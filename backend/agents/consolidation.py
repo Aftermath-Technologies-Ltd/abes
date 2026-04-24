@@ -296,4 +296,40 @@ class ConsolidationAgent:
         return events, pruned
 
 
-__all__ = ["ConsolidationAgent", "ConsolidationEvent"]
+def compute_belief_fitness(belief: Belief) -> float:
+    """Return the fitness score for a single belief.
+
+    Fitness = confidence * salience * max(use_count, 1). Axioms receive a
+    large bonus (1e6) so they always outrank non-axioms in selection.
+
+    Args:
+        belief: The belief to score.
+
+    Returns:
+        Non-negative float; higher is fitter.
+    """
+    base = belief.confidence * belief.salience * max(belief.use_count, 1)
+    return base + 1e6 if belief.is_axiom else base
+
+
+def population_selection(beliefs: List[Belief], target_count: int) -> List[Belief]:
+    """Select the top-`target_count` beliefs by fitness.
+
+    Axioms are protected via compute_belief_fitness and will always rank above
+    non-axioms. When `target_count` >= len(beliefs), the full list is returned
+    sorted by fitness descending.
+
+    Args:
+        beliefs: Pool of candidates.
+        target_count: How many to keep.
+
+    Returns:
+        Up to `target_count` beliefs, sorted fitness-descending.
+    """
+    if target_count <= 0:
+        return []
+    ranked = sorted(beliefs, key=compute_belief_fitness, reverse=True)
+    return ranked[:target_count]
+
+
+__all__ = ["ConsolidationAgent", "ConsolidationEvent", "compute_belief_fitness", "population_selection"]

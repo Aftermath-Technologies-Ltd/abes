@@ -367,4 +367,63 @@ class MutationEngineerAgent:
         return proposals
 
 
-__all__ = ["MutationEngineerAgent", "MutationProposal"]
+def cluster_high_tension_beliefs(
+    beliefs: list[Belief],
+    tension_scores: dict[UUID, float],
+    tension_threshold: float = 0.3,
+    overlap_threshold: float = 0.25,
+) -> list[list[Belief]]:
+    """Group high-tension beliefs into clusters by token overlap.
+
+    Filters beliefs whose tension score meets `tension_threshold`, then uses
+    greedy token-overlap clustering (Jaccard similarity on lowercased word sets)
+    to group related beliefs. A belief joins an existing cluster when its
+    overlap with any member exceeds `overlap_threshold`; otherwise it seeds
+    a new cluster.
+
+    Args:
+        beliefs: All active beliefs to consider.
+        tension_scores: Tension value per belief ID from contradiction detection.
+        tension_threshold: Minimum tension score to include a belief.
+        overlap_threshold: Minimum Jaccard overlap to merge into an existing cluster.
+
+    Returns:
+        List of clusters (each cluster is a list of Belief objects). Singletons
+        are included so every high-tension belief appears in exactly one cluster.
+    """
+    high_tension = [
+        b for b in beliefs
+        if tension_scores.get(b.id, 0.0) >= tension_threshold
+    ]
+    if not high_tension:
+        return []
+
+    def _tokens(text: str) -> set[str]:
+        return set(re.sub(r"[^\w\s]", "", text.lower()).split())
+
+    def _jaccard(a: set[str], b: set[str]) -> float:
+        union = a | b
+        return len(a & b) / len(union) if union else 0.0
+
+    token_sets = [_tokens(b.content) for b in high_tension]
+    clusters: list[list[int]] = []  # indices into high_tension
+
+    for i, toks in enumerate(token_sets):
+        placed = False
+        for cluster in clusters:
+            if any(_jaccard(toks, token_sets[j]) >= overlap_threshold for j in cluster):
+                cluster.append(i)
+                placed = True
+                break
+        if not placed:
+            clusters.append([i])
+
+    result = [[high_tension[i] for i in cluster] for cluster in clusters]
+    logger.debug(
+        "cluster_high_tension_beliefs: %d high-tension beliefs → %d clusters",
+        len(high_tension), len(result),
+    )
+    return result
+
+
+__all__ = ["MutationEngineerAgent", "MutationProposal", "cluster_high_tension_beliefs"]
