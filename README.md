@@ -38,8 +38,8 @@ External models used:
 ### Local setup
 
 ```bash
-git clone https://github.com/Aftermath-Technologies-Ltd/adaptive-belief-ecology-system.git
-cd adaptive-belief-ecology-system
+git clone https://github.com/Aftermath-Technologies-Ltd/abes.git
+cd abes
 
 python -m venv .venv
 source .venv/bin/activate
