@@ -4,6 +4,7 @@ Provides singletons for stores and config.
 """
 
 from typing import TYPE_CHECKING, Optional
+from dataclasses import dataclass, field
 
 from .config import ABESSettings, settings
 
@@ -18,6 +19,21 @@ _snapshot_store: Optional["InMemorySnapshotStore"] = None
 _bel: Optional["BeliefEcologyLoop"] = None
 _cluster_manager: Optional["BeliefClusterManager"] = None
 _scheduler: Optional["AgentScheduler"] = None
+
+
+@dataclass
+class RLState:
+    """Mutable singleton tracking RL training state for API exposure."""
+
+    policy_trained: bool = False
+    total_trajectories: int = 0
+    last_training_epoch_loss: Optional[float] = None
+    current_action_means: list[float] = field(default_factory=lambda: [0.0] * 7)
+    training_interval: int = 10
+    iterations_until_next_training: int = 10
+
+
+_rl_state: Optional[RLState] = None
 
 
 def get_belief_store():
@@ -80,14 +96,23 @@ def get_settings() -> ABESSettings:
     return settings
 
 
+def get_rl_state() -> RLState:
+    """Get the RL training state singleton."""
+    global _rl_state
+    if _rl_state is None:
+        _rl_state = RLState()
+    return _rl_state
+
+
 def reset_singletons() -> None:
     """Reset all singletons. For testing."""
-    global _belief_store, _snapshot_store, _bel, _cluster_manager, _scheduler
+    global _belief_store, _snapshot_store, _bel, _cluster_manager, _scheduler, _rl_state
     _belief_store = None
     _snapshot_store = None
     _bel = None
     _cluster_manager = None
     _scheduler = None
+    _rl_state = None
 
 
 __all__ = [
@@ -97,5 +122,7 @@ __all__ = [
     "get_cluster_manager",
     "get_scheduler",
     "get_settings",
+    "get_rl_state",
     "reset_singletons",
+    "RLState",
 ]

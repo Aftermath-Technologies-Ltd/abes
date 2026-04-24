@@ -8,11 +8,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .routes import (
     agents_router,
+    analytics_router,
     auth_router,
     bel_router,
     beliefs_router,
     chat_router,
     clusters_router,
+    rl_router,
     snapshots_router,
 )
 
@@ -40,11 +42,13 @@ app.add_middleware(
 
 # include routers
 app.include_router(auth_router)
+app.include_router(analytics_router)  # before beliefs_router to prevent /{id} capturing literal paths
 app.include_router(beliefs_router)
 app.include_router(snapshots_router)
 app.include_router(agents_router)
 app.include_router(bel_router)
 app.include_router(clusters_router)
+app.include_router(rl_router)
 app.include_router(chat_router)
 
 
