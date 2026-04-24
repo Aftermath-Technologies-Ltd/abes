@@ -4,10 +4,14 @@ Runs the 7-step ecology process: load, decay, detect contradictions,
 trigger actions, compute relevance, rank, and snapshot.
 """
 
-from typing import List, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List, Optional
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 from ...storage import Belief, BeliefStatus, Snapshot, SnapshotMetadata
 from ...storage.base import BeliefStoreABC, SnapshotStoreABC

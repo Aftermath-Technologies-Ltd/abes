@@ -103,6 +103,9 @@ class SchedulerContext:
     iteration: int = 0
     timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
+    # optional reference to the belief store for post-phase hooks
+    belief_store: Optional[Any] = None
+
 
 @dataclass
 class AgentEntry:
@@ -304,6 +307,15 @@ class AgentScheduler:
             if hasattr(agent, "consolidate"):
                 events, new_beliefs, deprecated = await agent.consolidate(ctx.beliefs)
                 ctx.events.extend(events)
+
+                # trigger tier rebalance after consolidation if store is available
+                if ctx.belief_store is not None and hasattr(ctx.belief_store, "rebalance_tiers"):
+                    try:
+                        import asyncio
+                        await ctx.belief_store.rebalance_tiers()
+                    except Exception as exc:
+                        logger.warning("tier rebalance failed after consolidation: %s", exc)
+
                 return AgentResult(
                     phase=phase,
                     success=True,

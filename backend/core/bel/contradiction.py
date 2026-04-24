@@ -3,12 +3,16 @@ Contradiction detection and tension computation.
 Finds semantically similar belief pairs that may conflict.
 """
 
+from __future__ import annotations
+
 import re
-from typing import List
+from typing import TYPE_CHECKING, List
 from uuid import UUID
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 from ...storage import Belief
 

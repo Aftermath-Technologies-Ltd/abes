@@ -3,11 +3,15 @@ Relevance scoring for beliefs based on context similarity.
 Uses embeddings to compute how relevant each belief is to current context.
 """
 
-from typing import List
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, List
 from uuid import UUID
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 from ...storage import Belief
 

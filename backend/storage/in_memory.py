@@ -2,7 +2,7 @@
 
 import asyncio
 import logging
-from typing import List, Optional
+from typing import Dict, List, Optional
 from uuid import UUID
 
 from ..core.models.belief import Belief, BeliefStatus
@@ -11,18 +11,39 @@ from .base import BeliefStoreABC, SnapshotStoreABC
 
 logger = logging.getLogger(__name__)
 
-# tier capacity limits
-L1_MAX = 50    # working memory - checked every turn
-L2_MAX = 2000  # episodic memory - checked during maintenance
-L3_MAX = 50000 # deep storage - only awakened if salience spikes
+# Configurable tier capacity caps. Override by passing a custom dict to
+# InMemoryBeliefStore, or by modifying TIER_CAPS before instantiation.
+TIER_CAPS: Dict[str, int] = {
+    "L1": 50,    # Working memory: high-salience, checked every turn
+    "L2": 200,   # Episodic memory: moderate activity
+    "L3": 1000,  # Deep storage: archived, low-salience
+}
+
+# Keep legacy constants for backward compatibility
+L1_MAX = TIER_CAPS["L1"]
+L2_MAX = TIER_CAPS["L2"]
+L3_MAX = TIER_CAPS["L3"]
+
+
+def _belief_fitness(belief: Belief) -> float:
+    """Compute fitness score used for tier demotion ordering.
+
+    fitness = confidence * salience * max(use_count, 1)
+
+    Higher fitness beliefs survive demotion pressure. Axioms receive a
+    large bonus so they are never demoted from L1.
+    """
+    base = belief.confidence * belief.salience * max(belief.use_count, 1)
+    return base + (1e6 if belief.is_axiom else 0.0)
 
 
 class InMemoryBeliefStore(BeliefStoreABC):
     """Dict-based belief storage with L1/L2/L3 tiered memory."""
 
-    def __init__(self):
+    def __init__(self, tier_caps: Optional[Dict[str, int]] = None):
         self._beliefs: dict[UUID, Belief] = {}
         self._lock = asyncio.Lock()
+        self._tier_caps: Dict[str, int] = dict(tier_caps or TIER_CAPS)
 
     async def create(self, belief: Belief) -> Belief:
         async with self._lock:
@@ -32,7 +53,8 @@ class InMemoryBeliefStore(BeliefStoreABC):
             if belief.is_axiom:
                 belief.memory_tier = "L1"
             elif belief.salience >= 0.8:
-                belief.memory_tier = "L1" if await self._tier_count("L1") < L1_MAX else "L2"
+                l1_count = sum(1 for b in self._beliefs.values() if b.memory_tier == "L1")
+                belief.memory_tier = "L1" if l1_count < self._tier_caps["L1"] else "L2"
             self._beliefs[belief.id] = belief
             return belief
 
@@ -112,51 +134,95 @@ class InMemoryBeliefStore(BeliefStoreABC):
         """Count beliefs in a given tier. Called within lock context."""
         return sum(1 for b in self._beliefs.values() if b.memory_tier == tier)
 
-    async def rebalance_tiers(self) -> dict[str, int]:
+    async def rebalance_tiers(
+        self,
+        tier_caps: Optional[Dict[str, int]] = None,
+    ) -> Dict[str, int]:
+        """Promote or demote beliefs between tiers based on fitness.
+
+        Fitness = confidence * salience * max(use_count, 1). Axioms always
+        remain in L1. When a tier exceeds its cap, the lowest-fitness beliefs
+        are demoted to the next lower tier. L3 overflow triggers deprecation
+        of the lowest-fitness beliefs (they are marked deprecated, not deleted).
+        Every demotion and deprecation is logged with the belief ID and reason.
+
+        Args:
+            tier_caps: Override caps for this call. Defaults to instance caps.
+
+        Returns:
+            Tier counts after rebalance.
         """
-        Promote/demote beliefs between tiers based on salience and usage.
-        L1: top-salience active beliefs (axioms always L1), capped at L1_MAX.
-        L2: moderate salience, capped at L2_MAX. Overflow spills to L3.
-        L3: everything else (deep storage, only awakened on salience spike).
-        Returns tier counts after rebalance.
-        """
+        caps = tier_caps or self._tier_caps
+
         async with self._lock:
             active = [
                 b for b in self._beliefs.values()
                 if b.status in (BeliefStatus.Active, BeliefStatus.Decaying)
             ]
 
-            # score = weighted combination of salience, confidence, recency
-            def tier_score(b: Belief) -> float:
-                recency = b.updated_at.timestamp() if b.updated_at else 0
-                return (
-                    b.salience * 0.5
-                    + b.confidence * 0.3
-                    + min(1.0, b.use_count / 20) * 0.2
-                )
-
-            # axioms always L1
+            # axioms always stay L1
             axioms = [b for b in active if b.is_axiom]
-            non_axioms = [b for b in active if not b.is_axiom]
-            non_axioms.sort(key=tier_score, reverse=True)
+            non_axioms = sorted(
+                [b for b in active if not b.is_axiom],
+                key=_belief_fitness,
+                reverse=True,
+            )
 
-            l1_slots = max(0, L1_MAX - len(axioms))
+            l1_slots = max(0, caps["L1"] - len(axioms))
             l1_candidates = non_axioms[:l1_slots]
-            remaining = non_axioms[l1_slots:]
+            after_l1 = non_axioms[l1_slots:]
 
-            l2_candidates = remaining[:L2_MAX]
-            l3_candidates = remaining[L2_MAX:]
+            l2_slots = caps["L2"]
+            l2_candidates = after_l1[:l2_slots]
+            after_l2 = after_l1[l2_slots:]
 
+            l3_slots = caps["L3"]
+            l3_candidates = after_l2[:l3_slots]
+            l3_overflow = after_l2[l3_slots:]
+
+            # apply tier assignments and log demotions
             for b in axioms:
+                if b.memory_tier != "L1":
+                    logger.info(
+                        "tier-rebalance: belief %s promoted to L1 (axiom)", b.id
+                    )
                 b.memory_tier = "L1"
+
             for b in l1_candidates:
+                if b.memory_tier != "L1":
+                    logger.info(
+                        "tier-rebalance: belief %s assigned L1 (fitness=%.4f)",
+                        b.id, _belief_fitness(b),
+                    )
                 b.memory_tier = "L1"
+
             for b in l2_candidates:
+                if b.memory_tier == "L1":
+                    logger.info(
+                        "tier-rebalance: belief %s demoted L1->L2 (fitness=%.4f)",
+                        b.id, _belief_fitness(b),
+                    )
                 b.memory_tier = "L2"
+
             for b in l3_candidates:
+                prev = b.memory_tier
+                if prev in ("L1", "L2"):
+                    logger.info(
+                        "tier-rebalance: belief %s demoted %s->L3 (fitness=%.4f)",
+                        b.id, prev, _belief_fitness(b),
+                    )
                 b.memory_tier = "L3"
 
-            # also push deprecated/dormant to L3
+            # L3 overflow: deprecate lowest-fitness beliefs
+            for b in l3_overflow:
+                logger.info(
+                    "tier-rebalance: belief %s deprecated (L3 overflow, fitness=%.4f)",
+                    b.id, _belief_fitness(b),
+                )
+                b.deprecate(reason="L3 overflow during tier rebalance")
+                b.memory_tier = "L3"
+
+            # push deprecated/dormant to L3
             for b in self._beliefs.values():
                 if b.status in (BeliefStatus.Deprecated, BeliefStatus.Dormant):
                     b.memory_tier = "L3"
@@ -166,18 +232,41 @@ class InMemoryBeliefStore(BeliefStoreABC):
             if b.memory_tier in counts:
                 counts[b.memory_tier] += 1
 
-        logger.info("tier rebalance: L1=%d L2=%d L3=%d", counts["L1"], counts["L2"], counts["L3"])
+        logger.info(
+            "tier rebalance complete: L1=%d/%d L2=%d/%d L3=%d/%d",
+            counts["L1"], caps["L1"],
+            counts["L2"], caps["L2"],
+            counts["L3"], caps["L3"],
+        )
         return counts
 
-    async def get_tier_stats(self) -> dict:
-        """Return tier distribution stats."""
-        counts = {"L1": 0, "L2": 0, "L3": 0, "total": 0}
+    async def get_tier_stats(self) -> Dict[str, object]:
+        """Return tier distribution with counts, caps, and utilization percentages.
+
+        Returns:
+            Dict with total count and per-tier sub-dicts containing:
+            - count: number of beliefs in tier
+            - cap: configured cap for tier
+            - utilization_pct: count / cap * 100, rounded to 1 decimal
+        """
+        counts: Dict[str, int] = {"L1": 0, "L2": 0, "L3": 0}
+        total = 0
         for b in self._beliefs.values():
-            counts["total"] += 1
+            total += 1
             tier = b.memory_tier
             if tier in counts:
                 counts[tier] += 1
-        return counts
+
+        tiers: Dict[str, object] = {}
+        for tier, count in counts.items():
+            cap = self._tier_caps.get(tier, 1)
+            tiers[tier] = {
+                "count": count,
+                "cap": cap,
+                "utilization_pct": round(count / cap * 100, 1),
+            }
+
+        return {"total": total, "tiers": tiers}
 
 
 class InMemorySnapshotStore(SnapshotStoreABC):
