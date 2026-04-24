@@ -771,6 +771,62 @@ async def _inspect(top: int, json_out: bool) -> None:
 # Main
 # ============================================================
 
+@cli.command("train-rl")
+@click.option(
+    "--trajectories",
+    type=click.Path(exists=True),
+    required=True,
+    help="Path to a JSON trajectory file saved by TrajectoryBuffer.save().",
+)
+@click.option("--epochs", default=50, show_default=True, type=int, help="Training epochs.")
+@click.option("--lr", default=0.001, show_default=True, type=float, help="Learning rate.")
+@click.option("--gamma", default=0.99, show_default=True, type=float, help="Discount factor.")
+@click.option("--output", default=None, help="Path to save trained policy weights (.npz).")
+@click.option("-v", "--verbose", is_flag=True)
+def train_rl(
+    trajectories: str,
+    epochs: int,
+    lr: float,
+    gamma: float,
+    output: Optional[str],
+    verbose: bool,
+) -> None:
+    """Train the RL policy offline from a saved trajectory file.
+
+    Loads transitions from TRAJECTORIES (a JSON file produced by
+    TrajectoryBuffer.save()), runs REINFORCE policy gradient for EPOCHS
+    passes, and optionally saves the resulting policy weights to OUTPUT.
+    """
+    import numpy as np
+    from .rl.trajectory_buffer import TrajectoryBuffer
+    from .rl.training import train_policy
+    from .rl.policy import MLPPolicy, PolicyConfig
+
+    _setup_logging(verbose)
+
+    click.echo(f"Loading trajectories from {trajectories} ...")
+    buf = TrajectoryBuffer()
+    buf.load(trajectories)
+    click.echo(f"  {len(buf)} transitions loaded.")
+
+    policy = MLPPolicy(PolicyConfig())
+    params_before = policy.get_params().copy()
+
+    click.echo(f"Training for {epochs} epochs (lr={lr}, gamma={gamma}) ...")
+    metrics = train_policy(policy, buf, epochs=epochs, lr=lr, gamma=gamma)
+
+    for m in metrics:
+        if verbose or m.epoch % max(1, epochs // 10) == 0:
+            click.echo(f"  epoch {m.epoch:>4d}: loss={m.policy_loss:.4f}  mean_reward={m.mean_reward:.4f}")
+
+    params_changed = not np.allclose(policy.get_params(), params_before)
+    click.echo(f"Training complete. Policy parameters changed: {params_changed}")
+
+    if output:
+        policy.save(output)
+        click.echo(f"Policy saved to {output}.")
+
+
 def main():
     print(ATTRIBUTION_BANNER)
     cli()

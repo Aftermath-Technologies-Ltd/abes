@@ -14,6 +14,7 @@ import numpy as np
 
 from .environment import BeliefEcologyEnv, EnvConfig, StepResult
 from .policy import MLPPolicy, PolicyConfig, EvolutionStrategy
+from .trajectory_buffer import TrajectoryBuffer
 from ..agents.rl_policy import EcologyState, PolicyAction
 
 logger = logging.getLogger(__name__)
@@ -343,4 +344,177 @@ __all__ = [
     "TrainingConfig",
     "TrainingMetrics",
     "RolloutBuffer",
+    "REINFORCEMetrics",
+    "train_policy",
 ]
+
+
+# ---------------------------------------------------------------------------
+# REINFORCE (vanilla policy gradient) training
+# ---------------------------------------------------------------------------
+
+from dataclasses import dataclass as _dc
+
+
+@_dc
+class REINFORCEMetrics:
+    """Per-epoch metrics from :func:`train_policy`."""
+
+    epoch: int
+    mean_reward: float
+    policy_loss: float
+
+
+def _discounted_returns(rewards: list[float], gamma: float) -> np.ndarray:
+    """Compute discounted cumulative returns for a single episode.
+
+    Args:
+        rewards: Sequence of scalar rewards.
+        gamma: Discount factor in [0, 1].
+
+    Returns:
+        Array of shape (T,) where G_t = sum_{k=0}^{T-t-1} gamma^k * r_{t+k}.
+    """
+    T = len(rewards)
+    returns = np.zeros(T, dtype=np.float32)
+    running = 0.0
+    for t in reversed(range(T)):
+        running = rewards[t] + gamma * running
+        returns[t] = running
+    return returns
+
+
+def _reinforce_gradient(
+    policy: MLPPolicy,
+    states: np.ndarray,
+    actions: np.ndarray,
+    returns: np.ndarray,
+) -> np.ndarray:
+    """Compute the REINFORCE policy gradient via manual backpropagation.
+
+    For a Gaussian policy π(a|s) ~ N(μ(s), σ²I) where μ = policy.forward(s):
+        ∇θ log π(a|s) = (a - μ(s)) / σ² · ∇θ μ(s)
+
+    The gradient is backpropagated analytically through each tanh layer.
+
+    Args:
+        policy: The MLP policy whose parameters will be updated.
+        states: Array of shape (T, state_dim).
+        actions: Array of shape (T, action_dim).
+        returns: Discounted return G_t for each step, shape (T,).
+
+    Returns:
+        Flat gradient vector matching policy.get_params() layout.
+    """
+    sigma = policy.config.action_std
+    T = len(states)
+    n_layers = len(policy.weights)
+    flat_grad = np.zeros(policy.param_count, dtype=np.float32)
+
+    for t in range(T):
+        s = states[t].astype(np.float32)
+        a = actions[t].astype(np.float32)
+        G = float(returns[t])
+
+        # Forward pass: collect pre-activation inputs to each layer
+        layer_inputs = [s]
+        x = s
+        for i in range(n_layers - 1):
+            x = np.tanh(x @ policy.weights[i] + policy.biases[i])
+            layer_inputs.append(x)
+
+        pre_out = x @ policy.weights[-1] + policy.biases[-1]
+        mu = np.tanh(pre_out)
+
+        # Gradient of log π w.r.t. μ, scaled by G_t
+        # d/dμ log π = (a - μ) / σ², then chain through tanh: (1 - μ²)
+        delta = G * (a - mu) / (sigma ** 2) * (1.0 - mu ** 2)
+
+        # Collect per-layer gradients in reverse then reverse at the end
+        layer_grads: list[tuple[np.ndarray, np.ndarray]] = []
+
+        for i in range(n_layers - 1, -1, -1):
+            x_in = layer_inputs[i]
+            dW = np.outer(x_in, delta)
+            db = delta.copy()
+            layer_grads.append((dW, db))
+
+            if i > 0:
+                # Propagate delta back through the tanh of layer i-1
+                delta = (delta @ policy.weights[i].T) * (1.0 - layer_inputs[i] ** 2)
+
+        # layer_grads is in reverse order; reverse to match forward-order layout
+        layer_grads.reverse()
+
+        # Flatten into the same layout as get_params()
+        parts = [arr.flatten() for dW, db in layer_grads for arr in (dW, db)]
+        flat_grad += np.concatenate(parts)
+
+    return flat_grad / max(T, 1)
+
+
+def train_policy(
+    policy: MLPPolicy,
+    buffer: TrajectoryBuffer,
+    epochs: int = 10,
+    lr: float = 0.001,
+    gamma: float = 0.99,
+    normalize_returns: bool = True,
+) -> list[REINFORCEMetrics]:
+    """Run REINFORCE policy gradient updates on a NumPy MLP policy.
+
+    Each epoch: treat all buffered transitions as a single flat trajectory,
+    compute discounted returns, compute the REINFORCE gradient via manual
+    backpropagation, then update parameters with a plain gradient ascent step.
+
+    Args:
+        policy: The MLP policy to update in-place.
+        buffer: Populated :class:`TrajectoryBuffer` (must be non-empty).
+        epochs: Number of gradient update passes over the buffer.
+        lr: Learning rate for the gradient ascent step.
+        gamma: Discount factor applied when computing returns.
+        normalize_returns: If True, standardise returns to zero mean / unit
+            variance before computing gradients (reduces variance).
+
+    Returns:
+        List of :class:`REINFORCEMetrics` - one entry per epoch.
+
+    Raises:
+        ValueError: If the buffer is empty.
+    """
+    if len(buffer) == 0:
+        raise ValueError("train_policy: buffer is empty; add transitions first")
+
+    states, actions, rewards, _, _ = buffer.as_arrays()
+    returns = _discounted_returns(rewards.tolist(), gamma)
+
+    if normalize_returns and returns.std() > 1e-8:
+        returns = (returns - returns.mean()) / returns.std()
+
+    metrics: list[REINFORCEMetrics] = []
+    for epoch in range(epochs):
+        grad = _reinforce_gradient(policy, states, actions, returns)
+
+        # Gradient ascent (maximise expected return)
+        params = policy.get_params()
+        policy.set_params(params + lr * grad)
+
+        # Policy loss: negative mean log-probability weighted by returns
+        # (recompute mu after the update for the metric)
+        mu_batch = np.stack([policy.forward(s) for s in states])
+        sigma = policy.config.action_std
+        log_probs = -0.5 * ((actions - mu_batch) ** 2).sum(axis=1) / (sigma ** 2)
+        loss = float(-np.mean(returns * log_probs))
+
+        metrics.append(REINFORCEMetrics(
+            epoch=epoch,
+            mean_reward=float(rewards.mean()),
+            policy_loss=loss,
+        ))
+        logger.debug("REINFORCE epoch %d: loss=%.4f mean_reward=%.4f", epoch, loss, rewards.mean())
+
+    logger.info(
+        "train_policy complete: %d epochs, final_loss=%.4f",
+        epochs, metrics[-1].policy_loss,
+    )
+    return metrics
