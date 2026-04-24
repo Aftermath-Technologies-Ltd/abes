@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-01-30T22:46:28.987718+00:00",
+  "elapsed_seconds": 0.32,
+  "all_passed": true,
+  "experiments": [
+    {
+      "name": "drift_benchmark",
+      "passed": true,
+      "message": null
+    },
+    {
+      "name": "decay_sweep",
+      "passed": true,
+      "message": null
+    },
+    {
+      "name": "conflict_resolution",
+      "passed": true,
+      "message": null
+    },
+    {
+      "name": "determinism_check",
+      "passed": true,
+      "message": null
+    },
+    {
+      "name": "offline_verification",
+      "passed": true,
+      "message": null
+    }
+  ],
+  "result_files": {
+    "drift_comparison.json": true,
+    "determinism_check.json": true,
+    "offline_verification.json": true,
+    "conflict_resolution_log.json": true,
+    "decay_sweep/decay_0.999.json": true,
+    "decay_sweep/decay_0.995.json": true,
+    "decay_sweep/decay_0.99.json": true,
+    "decay_sweep/decay_0.97.json": true,
+    "decay_sweep/decay_0.95.json": true
+  }
+}

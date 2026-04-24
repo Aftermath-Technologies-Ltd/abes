@@ -1,0 +1,23 @@
+{
+  "seed": 12345,
+  "runs": [
+    {
+      "run_id": 1,
+      "state_hash": "077ac8e32f721ef8dbb51a3613adf8e1288e9e0c02422af918327956c7dbcbe1",
+      "belief_count": 7
+    },
+    {
+      "run_id": 2,
+      "state_hash": "077ac8e32f721ef8dbb51a3613adf8e1288e9e0c02422af918327956c7dbcbe1",
+      "belief_count": 7
+    }
+  ],
+  "deterministic": true,
+  "seed_sensitivity": {
+    "seeds_tested": [
+      12345,
+      12346
+    ],
+    "hashes_differ": true
+  }
+}

@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="880" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="880" height="420" rx="12" fill="url(#bg2)"/>
+
+  <!-- Title -->
+  <text x="440" y="30" font-family="system-ui, sans-serif" font-size="14" fill="#8b949e" text-anchor="middle" font-weight="600" letter-spacing="2">SYSTEM ARCHITECTURE</text>
+
+  <!-- External Agents (top) -->
+  <rect x="300" y="48" width="280" height="38" rx="8" fill="#58a6ff" fill-opacity="0.08" stroke="#58a6ff" stroke-width="1.2"/>
+  <text x="440" y="72" font-family="system-ui, sans-serif" font-size="12" fill="#58a6ff" text-anchor="middle" font-weight="600">External Autonomous Agents</text>
+
+  <!-- Arrow down -->
+  <line x1="440" y1="86" x2="440" y2="108" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="434,106 440,114 446,106" fill="#58a6ff"/>
+
+  <!-- REST API layer -->
+  <rect x="250" y="114" width="380" height="38" rx="8" fill="#bc8cff" fill-opacity="0.08" stroke="#bc8cff" stroke-width="1.2"/>
+  <text x="440" y="138" font-family="system-ui, sans-serif" font-size="12" fill="#bc8cff" text-anchor="middle" font-weight="600">REST / WebSocket API</text>
+  <text x="440" y="148" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">FastAPI :8000</text>
+
+  <!-- Split arrows -->
+  <line x1="340" y1="152" x2="240" y2="185" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="235,182 240,191 245,183" fill="#8b949e"/>
+  <line x1="440" y1="152" x2="440" y2="185" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="434,183 440,191 446,183" fill="#8b949e"/>
+  <line x1="540" y1="152" x2="640" y2="185" stroke="#8b949e" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="635,182 640,191 645,183" fill="#8b949e"/>
+
+  <!-- Agent Scheduler (center, main) -->
+  <rect x="310" y="192" width="260" height="44" rx="10" fill="#3fb950" fill-opacity="0.10" stroke="#3fb950" stroke-width="1.5" filter="url(#glow2)"/>
+  <text x="440" y="214" font-family="system-ui, sans-serif" font-size="13" fill="#3fb950" text-anchor="middle" font-weight="700">Agent Scheduler</text>
+  <text x="440" y="228" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">15-phase pipeline - core processing loop</text>
+
+  <!-- Storage (right) -->
+  <rect x="605" y="192" width="160" height="44" rx="10" fill="#d29922" fill-opacity="0.08" stroke="#d29922" stroke-width="1.2"/>
+  <text x="685" y="214" font-family="system-ui, sans-serif" font-size="12" fill="#d29922" text-anchor="middle" font-weight="600">Storage</text>
+  <text x="685" y="228" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">SQLite / In-Memory</text>
+
+  <!-- LLM Layer (left) -->
+  <rect x="115" y="192" width="160" height="44" rx="10" fill="#f778ba" fill-opacity="0.08" stroke="#f778ba" stroke-width="1.2"/>
+  <text x="195" y="214" font-family="system-ui, sans-serif" font-size="12" fill="#f778ba" text-anchor="middle" font-weight="600">LLM Layer</text>
+  <text x="195" y="228" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Ollama / OpenAI / Anthropic</text>
+
+  <!-- Pipeline phases (row) -->
+  <line x1="440" y1="236" x2="440" y2="258" stroke="#3fb950" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="434,256 440,264 446,256" fill="#3fb950"/>
+
+  <!-- Phase boxes - Row 1 -->
+  <g transform="translate(80, 268)">
+    <rect width="100" height="30" rx="6" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">Perception</text>
+  </g>
+  <g transform="translate(190, 268)">
+    <rect width="100" height="30" rx="6" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">Reinforcement</text>
+  </g>
+  <g transform="translate(300, 268)">
+    <rect width="100" height="30" rx="6" fill="#d29922" fill-opacity="0.06" stroke="#d29922" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#d29922" text-anchor="middle">Decay</text>
+  </g>
+  <g transform="translate(410, 268)">
+    <rect width="100" height="30" rx="6" fill="#f85149" fill-opacity="0.06" stroke="#f85149" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#f85149" text-anchor="middle">Contradiction</text>
+  </g>
+  <g transform="translate(520, 268)">
+    <rect width="100" height="30" rx="6" fill="#bc8cff" fill-opacity="0.06" stroke="#bc8cff" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#bc8cff" text-anchor="middle">Mutation</text>
+  </g>
+  <g transform="translate(630, 268)">
+    <rect width="100" height="30" rx="6" fill="#3fb950" fill-opacity="0.06" stroke="#3fb950" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#3fb950" text-anchor="middle">Resolution</text>
+  </g>
+
+  <!-- Arrows between phase row 1 -->
+  <line x1="180" y1="283" x2="190" y2="283" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="290" y1="283" x2="300" y2="283" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="400" y1="283" x2="410" y2="283" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="510" y1="283" x2="520" y2="283" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="620" y1="283" x2="630" y2="283" stroke="#8b949e" stroke-width="0.7"/>
+
+  <!-- Phase boxes - Row 2 -->
+  <g transform="translate(80, 308)">
+    <rect width="100" height="30" rx="6" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">Relevance</text>
+  </g>
+  <g transform="translate(190, 308)">
+    <rect width="100" height="30" rx="6" fill="#3fb950" fill-opacity="0.06" stroke="#3fb950" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#3fb950" text-anchor="middle">RL Policy</text>
+  </g>
+  <g transform="translate(300, 308)">
+    <rect width="100" height="30" rx="6" fill="#d29922" fill-opacity="0.06" stroke="#d29922" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#d29922" text-anchor="middle">Consistency</text>
+  </g>
+  <g transform="translate(410, 308)">
+    <rect width="100" height="30" rx="6" fill="#f85149" fill-opacity="0.06" stroke="#f85149" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#f85149" text-anchor="middle">Safety</text>
+  </g>
+  <g transform="translate(520, 308)">
+    <rect width="100" height="30" rx="6" fill="#bc8cff" fill-opacity="0.06" stroke="#bc8cff" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#bc8cff" text-anchor="middle">Narrative</text>
+  </g>
+  <g transform="translate(630, 308)">
+    <rect width="100" height="30" rx="6" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="0.8"/>
+    <text x="50" y="19" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle">Consolidation</text>
+  </g>
+
+  <!-- Arrows between phase row 2 -->
+  <line x1="180" y1="323" x2="190" y2="323" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="290" y1="323" x2="300" y2="323" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="400" y1="323" x2="410" y2="323" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="510" y1="323" x2="520" y2="323" stroke="#8b949e" stroke-width="0.7"/>
+  <line x1="620" y1="323" x2="630" y2="323" stroke="#8b949e" stroke-width="0.7"/>
+
+  <!-- Wrap arrow from row 1 to row 2 -->
+  <path d="M730,283 Q755,283 755,298 Q755,313 740,323" stroke="#8b949e" stroke-width="0.7" fill="none" stroke-dasharray="3,2"/>
+
+  <!-- Down to Belief Ecology -->
+  <line x1="440" y1="338" x2="440" y2="360" stroke="#3fb950" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="434,358 440,366 446,358" fill="#3fb950"/>
+
+  <!-- Belief Ecology (bottom) -->
+  <rect x="260" y="366" width="360" height="40" rx="10" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="1.2"/>
+  <text x="440" y="389" font-family="system-ui, sans-serif" font-size="12" fill="#58a6ff" text-anchor="middle" font-weight="600">In-Memory Belief Ecology</text>
+  <text x="440" y="401" font-family="system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Confidence | Salience | Tension | Evidence | Graph Edges</text>
+
+  <!-- Bidirectional arrow ecology <-> storage -->
+  <line x1="620" y1="386" x2="685" y2="240" stroke="#d29922" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <polygon points="682,243 688,237 690,245" fill="#d29922" opacity="0.6"/>
+</svg>

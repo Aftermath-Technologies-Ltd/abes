@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 200" fill="none">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="440" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="440" height="200" rx="12" fill="url(#bg6)"/>
+
+  <text x="220" y="26" font-family="system-ui, sans-serif" font-size="13" fill="#8b949e" text-anchor="middle" font-weight="600" letter-spacing="2">SALIENCE DECAY</text>
+
+  <!-- Y axis -->
+  <line x1="60" y1="45" x2="60" y2="170" stroke="#30363d" stroke-width="1"/>
+  <text x="22" y="52" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">1.0</text>
+  <text x="22" y="90" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">0.7</text>
+  <text x="22" y="127" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">0.4</text>
+  <text x="22" y="170" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">0.0</text>
+  <text x="12" y="110" font-family="system-ui, sans-serif" font-size="7" fill="#6e7681" text-anchor="middle" transform="rotate(-90, 12, 110)">salience</text>
+
+  <!-- X axis -->
+  <line x1="60" y1="170" x2="420" y2="170" stroke="#30363d" stroke-width="1"/>
+  <text x="100" y="184" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">0d</text>
+  <text x="172" y="184" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">3.5d</text>
+  <text x="240" y="184" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">7d</text>
+  <text x="312" y="184" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">14d</text>
+  <text x="384" y="184" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">21d</text>
+  <text x="240" y="196" font-family="system-ui, sans-serif" font-size="7" fill="#6e7681" text-anchor="middle">time (days)</text>
+
+  <!-- Grid lines -->
+  <line x1="60" y1="90" x2="420" y2="90" stroke="#30363d" stroke-width="0.5" stroke-dasharray="3,4"/>
+  <line x1="60" y1="127" x2="420" y2="127" stroke="#30363d" stroke-width="0.5" stroke-dasharray="3,4"/>
+
+  <!-- Dormancy threshold line -->
+  <line x1="60" y1="163.75" x2="420" y2="163.75" stroke="#f85149" stroke-width="0.8" stroke-dasharray="5,3"/>
+  <text x="420" y="162" font-family="system-ui, sans-serif" font-size="7" fill="#f85149" text-anchor="end">dormancy (0.05)</text>
+
+  <!-- Decay curve: s(t) = 1.0 * 0.5^(t/7) plotted from 0 to 21 days -->
+  <!-- Points: (0,1.0) (3.5,0.707) (7,0.5) (10.5,0.354) (14,0.25) (17.5,0.177) (21,0.125) -->
+  <path d="M60,45 Q80,48 100,52 Q120,58 130,64 Q150,76 172,83 Q194,93 206,99 Q218,106 240,114 Q262,122 284,130 Q306,138 312,140 Q340,148 370,154 Q395,158 420,161" stroke="#58a6ff" stroke-width="2" fill="none"/>
+
+  <!-- Reinforce spike at day 5 -->
+  <line x1="146" y1="73" x2="146" y2="52" stroke="#3fb950" stroke-width="1.5"/>
+  <circle cx="146" cy="52" r="3" fill="#3fb950"/>
+  <text x="158" y="50" font-family="system-ui, sans-serif" font-size="7" fill="#3fb950">reinforce +0.15</text>
+
+  <!-- After reinforce, curve continues higher -->
+  <path d="M146,52 Q162,56 172,62 Q190,72 206,80 Q230,92 250,100 Q280,112 310,122 Q340,131 370,138 Q400,144 420,148" stroke="#3fb950" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+
+  <!-- Formula box -->
+  <rect x="240" y="44" width="170" height="26" rx="5" fill="#161b22" stroke="#30363d" stroke-width="0.8"/>
+  <text x="325" y="61" font-family="'SF Mono', monospace" font-size="8" fill="#58a6ff" text-anchor="middle">s(t) = s0 * 0.5^(t/half_life)</text>
+
+  <!-- Legend -->
+  <line x1="250" y1="78" x2="270" y2="78" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="275" y="82" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e">natural decay</text>
+  <line x1="330" y1="78" x2="350" y2="78" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="355" y="82" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e">after reinforce</text>
+</svg>

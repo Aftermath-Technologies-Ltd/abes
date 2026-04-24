@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 280" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="680" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3fb950"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f85149"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#bc8cff"/>
+    </marker>
+    <marker id="arrowYellow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d29922"/>
+    </marker>
+  </defs>
+  <rect width="680" height="280" rx="12" fill="url(#bg3)"/>
+
+  <text x="340" y="28" font-family="system-ui, sans-serif" font-size="13" fill="#8b949e" text-anchor="middle" font-weight="600" letter-spacing="2">BELIEF LIFECYCLE</text>
+
+  <!-- Active state (center) -->
+  <circle cx="340" cy="130" r="42" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="340" y="126" font-family="system-ui, sans-serif" font-size="12" fill="#3fb950" text-anchor="middle" font-weight="700">Active</text>
+  <text x="340" y="140" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">conf > 0.3</text>
+
+  <!-- Created (left entry) -->
+  <rect x="30" y="112" width="90" height="36" rx="8" fill="#58a6ff" fill-opacity="0.08" stroke="#58a6ff" stroke-width="1"/>
+  <text x="75" y="134" font-family="system-ui, sans-serif" font-size="11" fill="#58a6ff" text-anchor="middle" font-weight="600">Created</text>
+  <!-- Arrow: Created -> Active -->
+  <line x1="120" y1="130" x2="296" y2="130" stroke="#58a6ff" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="208" y="124" font-family="system-ui, sans-serif" font-size="8" fill="#58a6ff" text-anchor="middle">perception</text>
+
+  <!-- Reinforced (top loop) -->
+  <path d="M355,89 Q355,55 340,55 Q325,55 325,89" stroke="#3fb950" stroke-width="1.2" fill="none" marker-end="url(#arrowGreen)"/>
+  <text x="340" y="50" font-family="system-ui, sans-serif" font-size="8" fill="#3fb950" text-anchor="middle">reinforce</text>
+  <text x="340" y="60" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">+conf +salience +evidence</text>
+
+  <!-- Decaying (bottom right) -->
+  <circle cx="510" cy="200" r="36" fill="#d29922" fill-opacity="0.08" stroke="#d29922" stroke-width="1.2"/>
+  <text x="510" y="196" font-family="system-ui, sans-serif" font-size="11" fill="#d29922" text-anchor="middle" font-weight="600">Decaying</text>
+  <text x="510" y="210" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">conf 0.1-0.3</text>
+  <!-- Arrow: Active -> Decaying -->
+  <line x1="374" y1="156" x2="480" y2="184" stroke="#d29922" stroke-width="1" marker-end="url(#arrowYellow)"/>
+  <text x="432" y="162" font-family="system-ui, sans-serif" font-size="8" fill="#d29922" text-anchor="middle">decay tick</text>
+
+  <!-- Dormant (top right) -->
+  <circle cx="540" cy="80" r="34" fill="#8b949e" fill-opacity="0.08" stroke="#8b949e" stroke-width="1.2"/>
+  <text x="540" y="76" font-family="system-ui, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle" font-weight="600">Dormant</text>
+  <text x="540" y="90" font-family="system-ui, sans-serif" font-size="8" fill="#6e7681" text-anchor="middle">salience &lt; 0.05</text>
+  <!-- Arrow: Active -> Dormant -->
+  <line x1="378" y1="110" x2="510" y2="84" stroke="#8b949e" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="448" y="90" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">hibernate</text>
+  <!-- Arrow: Dormant -> Active (wake) -->
+  <path d="M506,82 Q430,64 380,105" stroke="#3fb950" stroke-width="0.8" fill="none" stroke-dasharray="3,2" marker-end="url(#arrowGreen)"/>
+  <text x="432" y="72" font-family="system-ui, sans-serif" font-size="7" fill="#3fb950" text-anchor="middle">wake on reinforce</text>
+
+  <!-- Mutated (bottom left) -->
+  <circle cx="180" cy="210" r="36" fill="#bc8cff" fill-opacity="0.08" stroke="#bc8cff" stroke-width="1.2"/>
+  <text x="180" y="206" font-family="system-ui, sans-serif" font-size="11" fill="#bc8cff" text-anchor="middle" font-weight="600">Mutated</text>
+  <text x="180" y="220" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">rewritten</text>
+  <!-- Arrow: Active -> Mutated -->
+  <line x1="308" y1="156" x2="210" y2="192" stroke="#bc8cff" stroke-width="1" marker-end="url(#arrowPurple)"/>
+  <text x="250" y="168" font-family="system-ui, sans-serif" font-size="8" fill="#bc8cff" text-anchor="middle">tension &gt; 0.5</text>
+  <!-- Arrow: Mutated spawns new Active -->
+  <path d="M180,174 Q180,150 260,130 Q290,124 298,128" stroke="#3fb950" stroke-width="0.8" fill="none" stroke-dasharray="3,2" marker-end="url(#arrowGreen)"/>
+  <text x="210" y="148" font-family="system-ui, sans-serif" font-size="7" fill="#3fb950" text-anchor="middle">spawn child</text>
+
+  <!-- Deprecated (far right) -->
+  <circle cx="630" cy="200" r="32" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="1.2"/>
+  <text x="630" y="196" font-family="system-ui, sans-serif" font-size="11" fill="#f85149" text-anchor="middle" font-weight="600">Deprecated</text>
+  <text x="630" y="210" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">conf &lt; 0.1</text>
+  <!-- Arrow: Decaying -> Deprecated -->
+  <line x1="544" y1="204" x2="598" y2="202" stroke="#f85149" stroke-width="1" marker-end="url(#arrowRed)"/>
+  <text x="571" y="196" font-family="system-ui, sans-serif" font-size="7" fill="#f85149" text-anchor="middle">expire</text>
+
+  <!-- Legend -->
+  <g transform="translate(30, 258)">
+    <circle cx="6" cy="6" r="4" fill="#3fb950" fill-opacity="0.3"/>
+    <text x="14" y="10" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e">conf &gt; 0.3</text>
+    <circle cx="86" cy="6" r="4" fill="#d29922" fill-opacity="0.3"/>
+    <text x="94" y="10" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e">0.1 - 0.3</text>
+    <circle cx="156" cy="6" r="4" fill="#f85149" fill-opacity="0.3"/>
+    <text x="164" y="10" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e">conf &lt; 0.1</text>
+    <circle cx="226" cy="6" r="4" fill="#bc8cff" fill-opacity="0.3"/>
+    <text x="234" y="10" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e">tension-triggered rewrite</text>
+    <circle cx="366" cy="6" r="4" fill="#8b949e" fill-opacity="0.3"/>
+    <text x="374" y="10" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e">salience-gated hibernation</text>
+  </g>
+</svg>

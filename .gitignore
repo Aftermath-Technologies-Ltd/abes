@@ -1,0 +1,80 @@
+# ABES spec (internal only)
+abes_spec_md.md
+
+# Copilot instructions (local only)
+.github/.copilot-instructions.md
+
+# Environment files (contains secrets)
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data and experiments
+data/raw/
+data/processed/
+data/*.db
+data/*.sqlite
+data/users.json
+experiments/results/
+experiments/logs/
+
+# Cognitive eval output (keep baselines, ignore run artifacts)
+results/cognitive_eval/eval_*
+results/cognitive_eval/latest.json
+results/cognitive_eval/*.log
+
+# User data (NEVER commit)
+*.users.json
+users.db
+abes_users.db
+abes.db
+
+# OS
+.DS_Store
+Thumbs.db
+frontend/node_modules/
+frontend/.next/

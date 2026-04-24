@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 180" fill="none">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="780" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="780" height="180" rx="12" fill="url(#bg4)"/>
+
+  <text x="390" y="26" font-family="system-ui, sans-serif" font-size="13" fill="#8b949e" text-anchor="middle" font-weight="600" letter-spacing="2">INGESTION PIPELINE</text>
+
+  <!-- Step 1: Ingest -->
+  <g transform="translate(20, 50)">
+    <rect width="80" height="56" rx="8" fill="#58a6ff" fill-opacity="0.08" stroke="#58a6ff" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle" font-weight="700">1</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Perception</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">extract candidates</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="100" y1="78" x2="112" y2="78" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="110,75 116,78 110,81" fill="#8b949e"/>
+
+  <!-- Step 2: Create -->
+  <g transform="translate(118, 50)">
+    <rect width="80" height="56" rx="8" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#3fb950" text-anchor="middle" font-weight="700">2</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Creation</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">persist belief</text>
+  </g>
+
+  <line x1="198" y1="78" x2="210" y2="78" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="208,75 214,78 208,81" fill="#8b949e"/>
+
+  <!-- Step 3: Reinforce -->
+  <g transform="translate(216, 50)">
+    <rect width="80" height="56" rx="8" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#3fb950" text-anchor="middle" font-weight="700">3</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Reinforcement</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">+conf +salience</text>
+  </g>
+
+  <line x1="296" y1="78" x2="308" y2="78" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="306,75 312,78 306,81" fill="#8b949e"/>
+
+  <!-- Step 4: Decay -->
+  <g transform="translate(314, 50)">
+    <rect width="80" height="56" rx="8" fill="#d29922" fill-opacity="0.08" stroke="#d29922" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#d29922" text-anchor="middle" font-weight="700">4</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Decay</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">tick half-life</text>
+  </g>
+
+  <line x1="394" y1="78" x2="406" y2="78" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="404,75 410,78 404,81" fill="#8b949e"/>
+
+  <!-- Step 5: Contradiction -->
+  <g transform="translate(412, 50)">
+    <rect width="80" height="56" rx="8" fill="#f85149" fill-opacity="0.08" stroke="#f85149" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#f85149" text-anchor="middle" font-weight="700">5</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Contradiction</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">apply tension</text>
+  </g>
+
+  <line x1="492" y1="78" x2="504" y2="78" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="502,75 508,78 502,81" fill="#8b949e"/>
+
+  <!-- Step 6: Mutation -->
+  <g transform="translate(510, 50)">
+    <rect width="80" height="56" rx="8" fill="#bc8cff" fill-opacity="0.08" stroke="#bc8cff" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#bc8cff" text-anchor="middle" font-weight="700">6</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Mutation</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">rewrite beliefs</text>
+  </g>
+
+  <line x1="590" y1="78" x2="602" y2="78" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="600,75 606,78 600,81" fill="#8b949e"/>
+
+  <!-- Step 7: Stack -->
+  <g transform="translate(608, 50)">
+    <rect width="80" height="56" rx="8" fill="#58a6ff" fill-opacity="0.08" stroke="#58a6ff" stroke-width="1"/>
+    <text x="40" y="26" font-family="system-ui, sans-serif" font-size="9" fill="#58a6ff" text-anchor="middle" font-weight="700">7</text>
+    <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#e6edf3" text-anchor="middle">Stack Select</text>
+    <text x="40" y="52" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">rank by salience</text>
+  </g>
+
+  <!-- Bottom row: 8 + 9 -->
+  <g transform="translate(216, 120)">
+    <rect width="130" height="44" rx="8" fill="#f778ba" fill-opacity="0.08" stroke="#f778ba" stroke-width="1"/>
+    <text x="65" y="22" font-family="system-ui, sans-serif" font-size="9" fill="#f778ba" text-anchor="middle" font-weight="700">8  LLM Generation</text>
+    <text x="65" y="36" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">belief-augmented prompt</text>
+  </g>
+
+  <line x1="346" y1="142" x2="380" y2="142" stroke="#8b949e" stroke-width="1"/>
+  <polygon points="378,139 384,142 378,145" fill="#8b949e"/>
+
+  <g transform="translate(386, 120)">
+    <rect width="130" height="44" rx="8" fill="#3fb950" fill-opacity="0.08" stroke="#3fb950" stroke-width="1"/>
+    <text x="65" y="22" font-family="system-ui, sans-serif" font-size="9" fill="#3fb950" text-anchor="middle" font-weight="700">9  Validation</text>
+    <text x="65" y="36" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">hallucination + safety check</text>
+  </g>
+
+  <!-- Arrow from step 7 down to step 8 -->
+  <path d="M648,106 Q648,120 470,120 Q350,120 300,120" stroke="#8b949e" stroke-width="1" fill="none"/>
+  <polygon points="302,117 296,120 302,123" fill="#8b949e"/>
+</svg>

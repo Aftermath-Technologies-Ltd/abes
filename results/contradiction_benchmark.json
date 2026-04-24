@@ -1,0 +1,1942 @@
+{
+  "timestamp": "2026-01-31T14:39:34.727288+00:00",
+  "corpus_version": "1.0.0",
+  "total_cases": 70,
+  "legacy_accuracy": 0.7143,
+  "semantic_accuracy": 0.7,
+  "improvement": -0.0143,
+  "category_metrics": [
+    {
+      "category": "entity_attribute",
+      "total_cases": 13,
+      "legacy_correct": 10,
+      "semantic_correct": 11,
+      "legacy_accuracy": 0.7692,
+      "semantic_accuracy": 0.8462,
+      "improvement": 0.0769
+    },
+    {
+      "category": "modality",
+      "total_cases": 11,
+      "legacy_correct": 8,
+      "semantic_correct": 5,
+      "legacy_accuracy": 0.7273,
+      "semantic_accuracy": 0.4545,
+      "improvement": -0.2727
+    },
+    {
+      "category": "negation_scope",
+      "total_cases": 12,
+      "legacy_correct": 11,
+      "semantic_correct": 10,
+      "legacy_accuracy": 0.9167,
+      "semantic_accuracy": 0.8333,
+      "improvement": -0.0833
+    },
+    {
+      "category": "numeric_units",
+      "total_cases": 12,
+      "legacy_correct": 8,
+      "semantic_correct": 10,
+      "legacy_accuracy": 0.6667,
+      "semantic_accuracy": 0.8333,
+      "improvement": 0.1667
+    },
+    {
+      "category": "quantifiers",
+      "total_cases": 11,
+      "legacy_correct": 6,
+      "semantic_correct": 9,
+      "legacy_accuracy": 0.5455,
+      "semantic_accuracy": 0.8182,
+      "improvement": 0.2727
+    },
+    {
+      "category": "temporal",
+      "total_cases": 11,
+      "legacy_correct": 7,
+      "semantic_correct": 4,
+      "legacy_accuracy": 0.6364,
+      "semantic_accuracy": 0.3636,
+      "improvement": -0.2727
+    }
+  ],
+  "case_results": [
+    {
+      "case_id": "neg_001",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 1.279
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 600.261
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_002",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 1.13
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.967
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_003",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.078
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.36
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_004",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.078
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.096
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_005",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.12
+      },
+      "semantic_result": {
+        "label": "not_contradiction",
+        "confidence": 0.15,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": true,
+        "latency_ms": 8.562
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "neg_006",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.071
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.227
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "neg_007",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.074
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.085
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_008",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.08
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 6.895
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_009",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.088
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "NEG_DIRECT",
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.205
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_010",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.106
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.278
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_011",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.08
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.923
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "neg_012",
+      "category": "negation_scope",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.084
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.826
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "mod_001",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.084
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "NEG_DIRECT",
+          "MOD_NECESSARY_VS_IMPOSSIBLE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.998
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "mod_002",
+      "category": "modality",
+      "expected": "not_contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.088
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.748
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "mod_003",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.072
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.6,
+        "reason_codes": [
+          "MOD_NECESSARY_VS_IMPOSSIBLE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.013
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "mod_004",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.081
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.11
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "mod_005",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.077
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.769
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "mod_006",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.09
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.571
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "mod_007",
+      "category": "modality",
+      "expected": "not_contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.07
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.897
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "mod_008",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.065
+      },
+      "semantic_result": {
+        "label": "not_contradiction",
+        "confidence": 0.15,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": true,
+        "latency_ms": 7.274
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "mod_009",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.066
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.405
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "mod_010",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.118
+      },
+      "semantic_result": {
+        "label": "not_contradiction",
+        "confidence": 0.15,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": true,
+        "latency_ms": 12.011
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "mod_011",
+      "category": "modality",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.073
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.994
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_001",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.055
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT",
+          "ENT_EXCLUSIVE_CATEGORY"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.251
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "temp_002",
+      "category": "temporal",
+      "expected": "not_contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.073
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.65
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_003",
+      "category": "temporal",
+      "expected": "not_contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.075
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.068
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_004",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.068
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.514
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_005",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.067
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.311
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_006",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.066
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.202
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "temp_007",
+      "category": "temporal",
+      "expected": "not_contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.087
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.758
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_008",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.071
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.222
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "temp_009",
+      "category": "temporal",
+      "expected": "not_contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.082
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.179
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "temp_010",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.07
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.146
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "temp_011",
+      "category": "temporal",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.092
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.34
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "num_001",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.074
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.218
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_002",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.094
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.303
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_003",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.084
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.814
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_004",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.09
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.352
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_005",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.086
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.472
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_006",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.086
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.594
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_007",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.087
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NUM_VALUE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.693
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_008",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.087
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 8.783
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "num_009",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.078
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NUM_VALUE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 9.025
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_010",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.09
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NUM_VALUE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.594
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "num_011",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.087
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 9.917
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "num_012",
+      "category": "numeric_units",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NUMERIC"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.074
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.7,
+        "reason_codes": [
+          "NUM_UNIT_CONVERTED"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.654
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_001",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.081
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "NEG_DIRECT",
+          "QUANT_UNIVERSAL_VS_NONE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 9.497
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_002",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.087
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.9,
+        "reason_codes": [
+          "QUANT_UNIVERSAL_VS_NONE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 9.244
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_003",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.092
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.6,
+        "reason_codes": [
+          "QUANT_UNIVERSAL_VS_EXISTENTIAL_NEG"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.913
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_004",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.081
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "NEG_DIRECT",
+          "QUANT_UNIVERSAL_VS_EXISTENTIAL_NEG"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.96
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_005",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.079
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.9,
+        "reason_codes": [
+          "QUANT_UNIVERSAL_VS_NONE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.183
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_006",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.46
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 14.471
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "quant_007",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.077
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.9,
+        "reason_codes": [
+          "QUANT_UNIVERSAL_VS_NONE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 9.174
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_008",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.168
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "NEG_DIRECT",
+          "QUANT_UNIVERSAL_VS_NONE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 9.7
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_009",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.6,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD",
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.027
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.63,
+        "reason_codes": [
+          "QUANT_UNIVERSAL_VS_NONE"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.952
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_010",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_NEGATION_WORD"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.081
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.8,
+        "reason_codes": [
+          "NEG_DIRECT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.78
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "quant_011",
+      "category": "quantifiers",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.078
+      },
+      "semantic_result": {
+        "label": "unknown",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": true,
+        "latency_ms": 7.923
+      },
+      "legacy_correct": false,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "ent_001",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.064
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.463
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_002",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.087
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.9,
+        "reason_codes": [
+          "ENT_EXCLUSIVE_CATEGORY"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.088
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_003",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.086
+      },
+      "semantic_result": {
+        "label": "not_contradiction",
+        "confidence": 0.15,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": true,
+        "latency_ms": 8.038
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "ent_004",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.091
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT",
+          "ENT_EXCLUSIVE_CATEGORY"
+        ],
+        "fallback_used": false,
+        "latency_ms": 12.467
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_005",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.141
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.9,
+        "reason_codes": [
+          "ENT_EXCLUSIVE_CATEGORY"
+        ],
+        "fallback_used": false,
+        "latency_ms": 8.234
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_006",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.113
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.913
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_007",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.022
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT",
+          "ENT_EXCLUSIVE_CATEGORY"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.652
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_008",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.037
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 10.901
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_009",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "not_contradiction",
+        "confidence": 0.0,
+        "reason_codes": [],
+        "fallback_used": false,
+        "latency_ms": 0.082
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 0.9,
+        "reason_codes": [
+          "ENT_EXCLUSIVE_CATEGORY"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.392
+      },
+      "legacy_correct": false,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_010",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.069
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 6.896
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_011",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.047
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.184
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    },
+    {
+      "case_id": "ent_012",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.063
+      },
+      "semantic_result": {
+        "label": "not_contradiction",
+        "confidence": 0.15,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": true,
+        "latency_ms": 7.165
+      },
+      "legacy_correct": true,
+      "semantic_correct": false
+    },
+    {
+      "case_id": "ent_013",
+      "category": "entity_attribute",
+      "expected": "contradiction",
+      "legacy_result": {
+        "label": "contradiction",
+        "confidence": 0.3,
+        "reason_codes": [
+          "LEGACY_ANTONYM"
+        ],
+        "fallback_used": false,
+        "latency_ms": 0.032
+      },
+      "semantic_result": {
+        "label": "contradiction",
+        "confidence": 1.0,
+        "reason_codes": [
+          "TEMP_SAME_ANCHOR_CONFLICT",
+          "ENT_SAME_ATTRIBUTE_CONFLICT"
+        ],
+        "fallback_used": false,
+        "latency_ms": 7.426
+      },
+      "legacy_correct": true,
+      "semantic_correct": true
+    }
+  ],
+  "snli_sample_results": [
+    {
+      "premise": "A man inspects the uniform of a figure in some East Asian country.",
+      "hypothesis": "The man is sleeping.",
+      "gold_label": "contradiction",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": false,
+      "semantic_correct": false,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "An older and younger man smiling.",
+      "hypothesis": "Two men are smiling and laughing at the cats playing on the floor.",
+      "gold_label": "neutral",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "A black race car starts up in front of a crowd of people.",
+      "hypothesis": "A man is driving down a lonely road.",
+      "gold_label": "contradiction",
+      "source": "SNLI",
+      "legacy_pred": "contradiction",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": false,
+      "semantic_reason_codes": [
+        "LEGACY_ANTONYM"
+      ],
+      "semantic_confidence": 0.15
+    },
+    {
+      "premise": "A soccer game with multiple males playing.",
+      "hypothesis": "Some men are playing a sport.",
+      "gold_label": "entailment",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "A smiling costumed woman is holding an umbrella.",
+      "hypothesis": "A happy woman in a fairy costume holds an umbrella.",
+      "gold_label": "neutral",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "A person on a horse jumps over a broken down airplane.",
+      "hypothesis": "A person is at a diner, deciding between a soup and salad.",
+      "gold_label": "contradiction",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": false,
+      "semantic_correct": false,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "Children smiling and waving at camera.",
+      "hypothesis": "They are smiling at their parents.",
+      "gold_label": "neutral",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "A boy is jumping on skateboard in the middle of a red bridge.",
+      "hypothesis": "The boy skates down the sidewalk.",
+      "gold_label": "contradiction",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": false,
+      "semantic_correct": false,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "An older man sits with his orange juice at a small table in a coffee shop.",
+      "hypothesis": "A man is sleeping on the couch.",
+      "gold_label": "contradiction",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": false,
+      "semantic_correct": false,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "Two women are embracing while holding to go packages.",
+      "hypothesis": "The sisters are hugging goodbye while holding to go packages.",
+      "gold_label": "neutral",
+      "source": "SNLI",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "The cat is on the mat.",
+      "hypothesis": "The cat is not on the mat.",
+      "gold_label": "contradiction",
+      "source": "MultiNLI-style",
+      "legacy_pred": "contradiction",
+      "semantic_pred": "contradiction",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [
+        "NEG_DIRECT"
+      ],
+      "semantic_confidence": 0.8
+    },
+    {
+      "premise": "John went to the store and bought milk.",
+      "hypothesis": "John stayed home all day.",
+      "gold_label": "contradiction",
+      "source": "MultiNLI-style",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": false,
+      "semantic_correct": false,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "A man is playing a piano.",
+      "hypothesis": "A man is playing a keyboard.",
+      "gold_label": "neutral",
+      "source": "SICK-style",
+      "legacy_pred": "other",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [],
+      "semantic_confidence": 0.0
+    },
+    {
+      "premise": "There is no dog in the yard.",
+      "hypothesis": "A dog is playing in the yard.",
+      "gold_label": "contradiction",
+      "source": "SICK-style",
+      "legacy_pred": "contradiction",
+      "semantic_pred": "other",
+      "legacy_correct": true,
+      "semantic_correct": false,
+      "semantic_reason_codes": [
+        "LEGACY_NEGATION_WORD"
+      ],
+      "semantic_confidence": 0.105
+    },
+    {
+      "premise": "The woman is not dancing.",
+      "hypothesis": "A woman is dancing.",
+      "gold_label": "contradiction",
+      "source": "SICK-style",
+      "legacy_pred": "contradiction",
+      "semantic_pred": "contradiction",
+      "legacy_correct": true,
+      "semantic_correct": true,
+      "semantic_reason_codes": [
+        "NEG_DIRECT"
+      ],
+      "semantic_confidence": 0.8
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" fill="none">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="680" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="680" height="200" rx="12" fill="url(#bg5)"/>
+
+  <text x="340" y="28" font-family="system-ui, sans-serif" font-size="13" fill="#8b949e" text-anchor="middle" font-weight="600" letter-spacing="2">TENSION AND CONTRADICTION</text>
+
+  <!-- Belief A -->
+  <rect x="40" y="55" width="200" height="60" rx="10" fill="#3fb950" fill-opacity="0.06" stroke="#3fb950" stroke-width="1"/>
+  <text x="140" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#3fb950" text-anchor="middle" font-weight="600">Belief A</text>
+  <text x="140" y="88" font-family="system-ui, sans-serif" font-size="8" fill="#e6edf3" text-anchor="middle">"I live in Austin"</text>
+  <text x="140" y="102" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">conf: 0.85  salience: 0.72</text>
+
+  <!-- Belief B -->
+  <rect x="440" y="55" width="200" height="60" rx="10" fill="#58a6ff" fill-opacity="0.06" stroke="#58a6ff" stroke-width="1"/>
+  <text x="540" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#58a6ff" text-anchor="middle" font-weight="600">Belief B</text>
+  <text x="540" y="88" font-family="system-ui, sans-serif" font-size="8" fill="#e6edf3" text-anchor="middle">"I moved to Denver"</text>
+  <text x="540" y="102" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">conf: 0.80  salience: 0.90</text>
+
+  <!-- Tension line -->
+  <line x1="240" y1="85" x2="440" y2="85" stroke="#f85149" stroke-width="2" stroke-dasharray="6,4"/>
+  <!-- Tension label -->
+  <rect x="295" y="64" width="90" height="28" rx="6" fill="#f85149" fill-opacity="0.12" stroke="#f85149" stroke-width="0.8"/>
+  <text x="340" y="76" font-family="system-ui, sans-serif" font-size="8" fill="#f85149" text-anchor="middle" font-weight="700">TENSION</text>
+  <text x="340" y="87" font-family="system-ui, sans-serif" font-size="8" fill="#f85149" text-anchor="middle">0.68</text>
+
+  <!-- Formula -->
+  <rect x="130" y="135" width="420" height="48" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="340" y="155" font-family="'SF Mono', 'Fira Code', monospace" font-size="10" fill="#e6edf3" text-anchor="middle">tension = similarity * avg_confidence * (0.5 + 0.5 * opposition)</text>
+  <text x="340" y="172" font-family="system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">High-confidence contradictions generate proportionally more tension. Low-confidence conflicts barely register.</text>
+
+  <!-- Thresholds on top right -->
+  <g transform="translate(560, 135)">
+    <rect width="100" height="48" rx="6" fill="#d29922" fill-opacity="0.06" stroke="#d29922" stroke-width="0.8"/>
+    <text x="50" y="16" font-family="system-ui, sans-serif" font-size="8" fill="#d29922" text-anchor="middle" font-weight="600">Thresholds</text>
+    <text x="50" y="30" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">mutation:    0.50</text>
+    <text x="50" y="42" font-family="system-ui, sans-serif" font-size="7" fill="#8b949e" text-anchor="middle">resolution:  0.60</text>
+  </g>
+</svg>

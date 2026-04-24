@@ -1,0 +1,74 @@
+[
+  {
+    "message": "I'm a software engineer working on distributed systems at a startup in Austin.",
+    "pause": 1.0,
+    "expect": "created",
+    "narration": "Stating a personal fact. Beliefs should be created for role, domain, company type, and location."
+  },
+  {
+    "message": "My team uses Rust for our core services and Python for data pipelines.",
+    "pause": 1.0,
+    "expect": "created",
+    "narration": "Adding technical context. New beliefs about tech stack."
+  },
+  {
+    "message": "I'm a software engineer focused on distributed systems.",
+    "pause": 1.5,
+    "expect": "reinforced",
+    "narration": "Repeating the first fact. Should reinforce existing beliefs (confidence boost + salience bump)."
+  },
+  {
+    "message": "What do you know about me so far?",
+    "pause": 2.0,
+    "expect": "recall",
+    "narration": "Recall test. The system should pull high-salience beliefs into its response."
+  },
+  {
+    "message": "Actually, I just moved to Denver. I no longer live in Austin.",
+    "pause": 2.0,
+    "expect": "tension",
+    "narration": "Contradiction! Austin vs Denver. Tension should spike on the location belief."
+  },
+  {
+    "message": "Where do I live?",
+    "pause": 2.0,
+    "expect": "recall",
+    "narration": "After contradiction, the system should favor the newer belief (Denver) or show uncertainty."
+  },
+  {
+    "message": "I really enjoy writing Rust. It is my favorite language.",
+    "pause": 1.0,
+    "expect": "reinforced",
+    "narration": "Reinforcing the Rust preference. Confidence and salience should climb."
+  },
+  {
+    "message": "I find that Rust's ownership model makes concurrent code much safer.",
+    "pause": 1.0,
+    "expect": "reinforced",
+    "narration": "Third reinforcement of the Rust theme. Evidence ledger grows."
+  },
+  {
+    "message": "We switched all our core services to Go last month. We no longer use Rust.",
+    "pause": 2.0,
+    "expect": "tension",
+    "narration": "Major contradiction with multiple Rust beliefs. Tension should spike hard."
+  },
+  {
+    "message": "What languages does my team use?",
+    "pause": 2.0,
+    "expect": "recall",
+    "narration": "Recall after conflict. Should reflect the update to Go, with possible tension notes."
+  },
+  {
+    "message": "I prefer short, direct answers with no fluff.",
+    "pause": 1.0,
+    "expect": "created",
+    "narration": "Preference belief. Should inform future response style."
+  },
+  {
+    "message": "What is the capital of France?",
+    "pause": 1.5,
+    "expect": "general",
+    "narration": "General knowledge question. Should answer factually without injecting personal beliefs."
+  }
+]

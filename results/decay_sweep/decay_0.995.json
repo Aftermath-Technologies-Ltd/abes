@@ -1,0 +1,14 @@
+{
+  "decay_factor": 0.995,
+  "run_metadata": {
+    "seed": 12345,
+    "duration_hours": 48.0
+  },
+  "metrics": {
+    "average_belief_lifetime": 205.07692307692307,
+    "belief_churn_rate": 1.0,
+    "contradictions_detected": 0,
+    "beliefs_dropped": 13,
+    "beliefs_retained": 0
+  }
+}

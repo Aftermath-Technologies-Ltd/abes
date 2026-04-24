@@ -1,0 +1,724 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-01-31",
+    "description": "Curated contradiction detection corpus for ABES semantic detector evaluation",
+    "sources": [
+      "SNLI (Stanford Natural Language Inference) - Bowman et al. 2015",
+      "MultiNLI (Multi-Genre NLI) - Williams et al. 2018",
+      "SICK (Sentences Involving Compositional Knowledge) - Marelli et al. 2014",
+      "Custom cases for edge case coverage"
+    ],
+    "partition_counts": {
+      "negation_scope": 12,
+      "modality": 11,
+      "temporal": 11,
+      "numeric_units": 12,
+      "quantifiers": 11,
+      "entity_attribute": 13
+    },
+    "total_cases": 70
+  },
+  "cases": [
+    {
+      "id": "neg_001",
+      "category": "negation_scope",
+      "text_a": "A man is playing a guitar.",
+      "text_b": "A man is not playing a guitar.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "SNLI-inspired",
+      "notes": "direct negation of same predicate"
+    },
+    {
+      "id": "neg_002",
+      "category": "negation_scope",
+      "text_a": "The children are sleeping.",
+      "text_b": "The children are not sleeping.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "SNLI-inspired",
+      "notes": "direct verb negation"
+    },
+    {
+      "id": "neg_003",
+      "category": "negation_scope",
+      "text_a": "She likes coffee.",
+      "text_b": "She does not like coffee.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "auxiliary do negation"
+    },
+    {
+      "id": "neg_004",
+      "category": "negation_scope",
+      "text_a": "The store is open.",
+      "text_b": "The store is not open.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "copular negation"
+    },
+    {
+      "id": "neg_005",
+      "category": "negation_scope",
+      "text_a": "I don't think he is wrong.",
+      "text_b": "He is wrong.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "negation scope challenge - neg-raising"
+    },
+    {
+      "id": "neg_006",
+      "category": "negation_scope",
+      "text_a": "Nobody saw the accident.",
+      "text_b": "Someone saw the accident.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "quantifier negation"
+    },
+    {
+      "id": "neg_007",
+      "category": "negation_scope",
+      "text_a": "The dog is barking loudly.",
+      "text_b": "The dog is not barking.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "SICK-inspired",
+      "notes": "negation removes action entirely"
+    },
+    {
+      "id": "neg_008",
+      "category": "negation_scope",
+      "text_a": "He never exercises.",
+      "text_b": "He exercises daily.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "never vs positive frequency"
+    },
+    {
+      "id": "neg_009",
+      "category": "negation_scope",
+      "text_a": "The restaurant has no outdoor seating.",
+      "text_b": "The restaurant has outdoor seating.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "determiner negation"
+    },
+    {
+      "id": "neg_010",
+      "category": "negation_scope",
+      "text_a": "I can see the mountains.",
+      "text_b": "I cannot see the mountains.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT", "MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "modal negation"
+    },
+    {
+      "id": "neg_011",
+      "category": "negation_scope",
+      "text_a": "The package was delivered.",
+      "text_b": "The package was not delivered.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "passive voice negation"
+    },
+    {
+      "id": "neg_012",
+      "category": "negation_scope",
+      "text_a": "They agreed to the terms.",
+      "text_b": "They did not agree to the terms.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "past tense auxiliary negation"
+    },
+    {
+      "id": "mod_001",
+      "category": "modality",
+      "text_a": "You must attend the meeting.",
+      "text_b": "You cannot attend the meeting.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "deontic must vs cannot"
+    },
+    {
+      "id": "mod_002",
+      "category": "modality",
+      "text_a": "The train will arrive at noon.",
+      "text_b": "The train might arrive at noon.",
+      "expected_label": "not_contradiction",
+      "required_reason_codes": [],
+      "source": "custom",
+      "notes": "will and might are compatible (might is weaker)"
+    },
+    {
+      "id": "mod_003",
+      "category": "modality",
+      "text_a": "It is impossible to finish today.",
+      "text_b": "We must finish today.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "impossible vs must"
+    },
+    {
+      "id": "mod_004",
+      "category": "modality",
+      "text_a": "She can speak French.",
+      "text_b": "She cannot speak French.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "ability can vs cannot"
+    },
+    {
+      "id": "mod_005",
+      "category": "modality",
+      "text_a": "He could have helped.",
+      "text_b": "He could not have helped.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "counterfactual could"
+    },
+    {
+      "id": "mod_006",
+      "category": "modality",
+      "text_a": "The answer is definitely correct.",
+      "text_b": "The answer might be wrong.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_FACTUAL_VS_POSSIBLE"],
+      "source": "custom",
+      "notes": "certainty vs possibility with opposite outcome"
+    },
+    {
+      "id": "mod_007",
+      "category": "modality",
+      "text_a": "They should arrive by five.",
+      "text_b": "They might arrive by five.",
+      "expected_label": "not_contradiction",
+      "required_reason_codes": [],
+      "source": "custom",
+      "notes": "should and might are compatible"
+    },
+    {
+      "id": "mod_008",
+      "category": "modality",
+      "text_a": "This has to work.",
+      "text_b": "This cannot work.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "have to vs cannot"
+    },
+    {
+      "id": "mod_009",
+      "category": "modality",
+      "text_a": "Perhaps it will rain.",
+      "text_b": "It will definitely not rain.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "weak possibility vs strong negation"
+    },
+    {
+      "id": "mod_010",
+      "category": "modality",
+      "text_a": "You need to submit by Friday.",
+      "text_b": "You cannot submit by Friday.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "need vs cannot"
+    },
+    {
+      "id": "mod_011",
+      "category": "modality",
+      "text_a": "It is certain that he passed.",
+      "text_b": "It is impossible that he passed.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["MOD_NECESSARY_VS_IMPOSSIBLE"],
+      "source": "custom",
+      "notes": "certain vs impossible"
+    },
+    {
+      "id": "temp_001",
+      "category": "temporal",
+      "text_a": "The store is open today.",
+      "text_b": "The store is closed today.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["TEMP_SAME_ANCHOR_CONFLICT", "ENT_EXCLUSIVE_CATEGORY"],
+      "source": "custom",
+      "notes": "same time, exclusive states"
+    },
+    {
+      "id": "temp_002",
+      "category": "temporal",
+      "text_a": "He was the CEO.",
+      "text_b": "He is the CEO.",
+      "expected_label": "not_contradiction",
+      "required_reason_codes": [],
+      "source": "custom",
+      "notes": "past vs present - not contradictory (could have continued)"
+    },
+    {
+      "id": "temp_003",
+      "category": "temporal",
+      "text_a": "The meeting starts at 9am.",
+      "text_b": "The meeting started at 10am.",
+      "expected_label": "not_contradiction",
+      "required_reason_codes": [],
+      "source": "custom",
+      "notes": "different tenses may refer to different events"
+    },
+    {
+      "id": "temp_004",
+      "category": "temporal",
+      "text_a": "She lives in Paris now.",
+      "text_b": "She lives in London now.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "same time anchor, exclusive locations"
+    },
+    {
+      "id": "temp_005",
+      "category": "temporal",
+      "text_a": "The project is complete.",
+      "text_b": "The project is incomplete.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "present tense, exclusive states"
+    },
+    {
+      "id": "temp_006",
+      "category": "temporal",
+      "text_a": "Yesterday was sunny.",
+      "text_b": "Yesterday was rainy.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["LEGACY_ANTONYM"],
+      "source": "custom",
+      "notes": "same past anchor, exclusive weather"
+    },
+    {
+      "id": "temp_007",
+      "category": "temporal",
+      "text_a": "The train arrives at 3pm.",
+      "text_b": "The train departs at 3pm.",
+      "expected_label": "not_contradiction",
+      "required_reason_codes": [],
+      "source": "custom",
+      "notes": "different predicates, may both be true"
+    },
+    {
+      "id": "temp_008",
+      "category": "temporal",
+      "text_a": "He worked here in 2020.",
+      "text_b": "He did not work here in 2020.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "same time anchor, direct negation"
+    },
+    {
+      "id": "temp_009",
+      "category": "temporal",
+      "text_a": "The movie premieres tonight.",
+      "text_b": "The movie premiered last week.",
+      "expected_label": "not_contradiction",
+      "required_reason_codes": [],
+      "source": "custom",
+      "notes": "different time anchors"
+    },
+    {
+      "id": "temp_010",
+      "category": "temporal",
+      "text_a": "She is currently the manager.",
+      "text_b": "She is not the manager anymore.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NEG_DIRECT"],
+      "source": "custom",
+      "notes": "currently vs not anymore at present"
+    },
+    {
+      "id": "temp_011",
+      "category": "temporal",
+      "text_a": "The company was founded in 1990.",
+      "text_b": "The company was founded in 1995.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_VALUE_CONFLICT"],
+      "source": "custom",
+      "notes": "conflicting year values"
+    },
+    {
+      "id": "num_001",
+      "category": "numeric_units",
+      "text_a": "The temperature is 40 degrees.",
+      "text_b": "The temperature is 80 degrees.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_VALUE_CONFLICT", "NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "same unit, different values"
+    },
+    {
+      "id": "num_002",
+      "category": "numeric_units",
+      "text_a": "The building is 100 meters tall.",
+      "text_b": "The building is 50 meters tall.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_VALUE_CONFLICT", "NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "height conflict"
+    },
+    {
+      "id": "num_003",
+      "category": "numeric_units",
+      "text_a": "It costs 50 dollars.",
+      "text_b": "It costs 100 dollars.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_VALUE_CONFLICT", "NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "price conflict"
+    },
+    {
+      "id": "num_004",
+      "category": "numeric_units",
+      "text_a": "The distance is 10 kilometers.",
+      "text_b": "The distance is 10 miles.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "unit conversion: 10km != 10mi"
+    },
+    {
+      "id": "num_005",
+      "category": "numeric_units",
+      "text_a": "He weighs 70 kg.",
+      "text_b": "He weighs 70 pounds.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "unit conversion: 70kg != 70lbs"
+    },
+    {
+      "id": "num_006",
+      "category": "numeric_units",
+      "text_a": "The meeting lasted 2 hours.",
+      "text_b": "The meeting lasted 30 minutes.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "time duration conflict after conversion"
+    },
+    {
+      "id": "num_007",
+      "category": "numeric_units",
+      "text_a": "More than 100 people attended.",
+      "text_b": "Fewer than 50 people attended.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_COMPARATOR_CONFLICT"],
+      "source": "custom",
+      "notes": "comparator conflict"
+    },
+    {
+      "id": "num_008",
+      "category": "numeric_units",
+      "text_a": "The box is 30 cm wide.",
+      "text_b": "The box is 30 inches wide.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "30cm != 30in"
+    },
+    {
+      "id": "num_009",
+      "category": "numeric_units",
+      "text_a": "Sales increased by 50 percent.",
+      "text_b": "Sales increased by 10 percent.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_VALUE_CONFLICT", "NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "percentage conflict"
+    },
+    {
+      "id": "num_010",
+      "category": "numeric_units",
+      "text_a": "At least 20 items are required.",
+      "text_b": "At most 10 items are allowed.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_COMPARATOR_CONFLICT"],
+      "source": "custom",
+      "notes": "overlapping ranges impossible"
+    },
+    {
+      "id": "num_011",
+      "category": "numeric_units",
+      "text_a": "The project takes 6 months.",
+      "text_b": "The project takes 2 years.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "time duration conflict"
+    },
+    {
+      "id": "num_012",
+      "category": "numeric_units",
+      "text_a": "The speed limit is 100 km.",
+      "text_b": "The speed limit is 30 km.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["NUM_VALUE_CONFLICT", "NUM_UNIT_CONVERTED"],
+      "source": "custom",
+      "notes": "speed conflict (same implied unit)"
+    },
+    {
+      "id": "quant_001",
+      "category": "quantifiers",
+      "text_a": "All students passed the exam.",
+      "text_b": "No students passed the exam.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "universal vs none"
+    },
+    {
+      "id": "quant_002",
+      "category": "quantifiers",
+      "text_a": "Everyone attended the party.",
+      "text_b": "Nobody attended the party.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "everyone vs nobody"
+    },
+    {
+      "id": "quant_003",
+      "category": "quantifiers",
+      "text_a": "Every employee received a bonus.",
+      "text_b": "Some employees did not receive a bonus.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_EXISTENTIAL_NEG"],
+      "source": "custom",
+      "notes": "every vs some not"
+    },
+    {
+      "id": "quant_004",
+      "category": "quantifiers",
+      "text_a": "All birds can fly.",
+      "text_b": "Some birds cannot fly.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_EXISTENTIAL_NEG"],
+      "source": "SNLI-inspired",
+      "notes": "universal claim vs existential counter"
+    },
+    {
+      "id": "quant_005",
+      "category": "quantifiers",
+      "text_a": "Nothing was damaged.",
+      "text_b": "Everything was damaged.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "nothing vs everything"
+    },
+    {
+      "id": "quant_006",
+      "category": "quantifiers",
+      "text_a": "Most people agree.",
+      "text_b": "Few people agree.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["LEGACY_ANTONYM"],
+      "source": "custom",
+      "notes": "most vs few - proportional conflict"
+    },
+    {
+      "id": "quant_007",
+      "category": "quantifiers",
+      "text_a": "All the cookies were eaten.",
+      "text_b": "None of the cookies were eaten.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "all vs none"
+    },
+    {
+      "id": "quant_008",
+      "category": "quantifiers",
+      "text_a": "Each participant received instructions.",
+      "text_b": "No participant received instructions.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "each vs no"
+    },
+    {
+      "id": "quant_009",
+      "category": "quantifiers",
+      "text_a": "Always check your work.",
+      "text_b": "Never check your work.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "always vs never (temporal quantifiers)"
+    },
+    {
+      "id": "quant_010",
+      "category": "quantifiers",
+      "text_a": "Many solutions exist.",
+      "text_b": "No solutions exist.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_NONE"],
+      "source": "custom",
+      "notes": "many implies some, vs none"
+    },
+    {
+      "id": "quant_011",
+      "category": "quantifiers",
+      "text_a": "Some students failed.",
+      "text_b": "All students passed.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["QUANT_UNIVERSAL_VS_EXISTENTIAL_NEG"],
+      "source": "custom",
+      "notes": "some failed contradicts all passed"
+    },
+    {
+      "id": "ent_001",
+      "category": "entity_attribute",
+      "text_a": "The car is red.",
+      "text_b": "The car is blue.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "SICK-inspired",
+      "notes": "exclusive color attributes"
+    },
+    {
+      "id": "ent_002",
+      "category": "entity_attribute",
+      "text_a": "He is a bachelor.",
+      "text_b": "He is married.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_EXCLUSIVE_CATEGORY"],
+      "source": "custom",
+      "notes": "mutually exclusive categories"
+    },
+    {
+      "id": "ent_003",
+      "category": "entity_attribute",
+      "text_a": "The door is open.",
+      "text_b": "The door is closed.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_EXCLUSIVE_CATEGORY", "ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "exclusive states"
+    },
+    {
+      "id": "ent_004",
+      "category": "entity_attribute",
+      "text_a": "She is alive.",
+      "text_b": "She is dead.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_EXCLUSIVE_CATEGORY"],
+      "source": "custom",
+      "notes": "alive vs dead"
+    },
+    {
+      "id": "ent_005",
+      "category": "entity_attribute",
+      "text_a": "The glass is empty.",
+      "text_b": "The glass is full.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_EXCLUSIVE_CATEGORY"],
+      "source": "custom",
+      "notes": "empty vs full"
+    },
+    {
+      "id": "ent_006",
+      "category": "entity_attribute",
+      "text_a": "John is tall.",
+      "text_b": "John is short.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "SNLI-inspired",
+      "notes": "exclusive height attributes"
+    },
+    {
+      "id": "ent_007",
+      "category": "entity_attribute",
+      "text_a": "The answer is true.",
+      "text_b": "The answer is false.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_EXCLUSIVE_CATEGORY", "ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "boolean exclusive"
+    },
+    {
+      "id": "ent_008",
+      "category": "entity_attribute",
+      "text_a": "The weather is hot.",
+      "text_b": "The weather is cold.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT", "TEMP_SAME_ANCHOR_CONFLICT"],
+      "source": "custom",
+      "notes": "exclusive temperature attributes"
+    },
+    {
+      "id": "ent_009",
+      "category": "entity_attribute",
+      "text_a": "The container is present.",
+      "text_b": "The container is absent.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_EXCLUSIVE_CATEGORY"],
+      "source": "custom",
+      "notes": "present vs absent"
+    },
+    {
+      "id": "ent_010",
+      "category": "entity_attribute",
+      "text_a": "She is happy.",
+      "text_b": "She is sad.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "SICK-inspired",
+      "notes": "exclusive emotional states"
+    },
+    {
+      "id": "ent_011",
+      "category": "entity_attribute",
+      "text_a": "The road is dry.",
+      "text_b": "The road is wet.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "exclusive physical states"
+    },
+    {
+      "id": "ent_012",
+      "category": "entity_attribute",
+      "text_a": "The light is on.",
+      "text_b": "The light is off.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "on vs off"
+    },
+    {
+      "id": "ent_013",
+      "category": "entity_attribute",
+      "text_a": "The room is bright.",
+      "text_b": "The room is dark.",
+      "expected_label": "contradiction",
+      "required_reason_codes": ["ENT_SAME_ATTRIBUTE_CONFLICT"],
+      "source": "custom",
+      "notes": "brightness antonyms"
+    }
+  ]
+}

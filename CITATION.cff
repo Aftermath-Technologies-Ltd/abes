@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as follows."
+authors:
+  - family-names: "Kinnard"
+    given-names: "Bradley R."
+    affiliation: "Aftermath Technologies"
+title: "Adaptive Belief Ecology System (ABES)"
+url: "https://github.com/Aftermath-Technologies-Ltd/adaptive-belief-ecology-system"

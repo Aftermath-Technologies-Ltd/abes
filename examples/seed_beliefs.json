@@ -1,0 +1,32 @@
+[
+  {
+    "content": "User prefers concise, no-fluff answers",
+    "confidence": 0.75,
+    "salience": 0.8,
+    "source": "seed"
+  },
+  {
+    "content": "User works on AI cognitive architectures",
+    "confidence": 0.85,
+    "salience": 0.7,
+    "source": "seed"
+  },
+  {
+    "content": "User values deterministic, reproducible behavior in software",
+    "confidence": 0.8,
+    "salience": 0.65,
+    "source": "seed"
+  },
+  {
+    "content": "User prefers Python 3.10+ with modern typing",
+    "confidence": 0.7,
+    "salience": 0.6,
+    "source": "seed"
+  },
+  {
+    "content": "User is interested in belief revision and epistemic logic",
+    "confidence": 0.75,
+    "salience": 0.65,
+    "source": "seed"
+  }
+]

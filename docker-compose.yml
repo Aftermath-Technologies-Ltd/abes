@@ -1,0 +1,59 @@
+# Author: Bradley R. Kinnard
+# ABES Docker Compose - backend + frontend + optional Ollama
+#
+# Usage:
+#   docker compose up              # backend only (LLM_PROVIDER=none)
+#   docker compose up --profile ui # backend + frontend
+#   docker compose up --profile llm --profile ui  # full stack with Ollama
+#
+# The backend starts with in-memory storage by default.
+# Mount a volume for SQLite persistence:
+#   STORAGE_BACKEND=sqlite docker compose up
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - STORAGE_BACKEND=${STORAGE_BACKEND:-memory}
+      - DATABASE_URL=sqlite+aiosqlite:///./data/abes.db
+      - LLM_PROVIDER=${LLM_PROVIDER:-none}
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    volumes:
+      - abes-data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/bel/health').raise_for_status()"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  frontend:
+    profiles: ["ui"]
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  ollama:
+    profiles: ["llm"]
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+
+volumes:
+  abes-data:
+  ollama-models:

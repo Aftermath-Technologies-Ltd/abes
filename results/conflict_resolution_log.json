@@ -1,0 +1,328 @@
+{
+  "cases": [
+    {
+      "case_id": "3cd38cf2f5417850",
+      "input_beliefs": [
+        {
+          "id": "a415270f-7d67-4319-be7a-dbafdb0302ee",
+          "content": "A is true",
+          "confidence": 0.8,
+          "created_at_turn": 0
+        },
+        {
+          "id": "4b822145-d51c-49c0-b8c7-80fa6655c215",
+          "content": "A is false",
+          "confidence": 0.8,
+          "created_at_turn": 5
+        }
+      ],
+      "resolution_action": "defer",
+      "resulting_beliefs": [
+        {
+          "id": "a415270f-7d67-4319-be7a-dbafdb0302ee",
+          "content": "A is true",
+          "confidence": 0.8,
+          "created_at_turn": 0
+        },
+        {
+          "id": "4b822145-d51c-49c0-b8c7-80fa6655c215",
+          "content": "A is false",
+          "confidence": 0.8,
+          "created_at_turn": 5
+        }
+      ],
+      "confidence_score": 0.8,
+      "notes": "Deferred: beliefs have similar confidence and age, marking as conflicting",
+      "test_name": "equal_strength_contradiction",
+      "status": "pass"
+    },
+    {
+      "case_id": "d3ad20b7c9d4e020",
+      "input_beliefs": [
+        {
+          "id": "df88db17-4207-430a-82aa-a8b139be1c8b",
+          "content": "I like X",
+          "confidence": 0.9,
+          "created_at_turn": 0
+        },
+        {
+          "id": "f38f38c5-1425-466f-8025-2c4fdd3f423b",
+          "content": "I hate X",
+          "confidence": 0.6,
+          "created_at_turn": 5
+        }
+      ],
+      "resolution_action": "weaken",
+      "resulting_beliefs": [
+        {
+          "id": "df88db17-4207-430a-82aa-a8b139be1c8b",
+          "content": "I like X",
+          "confidence": 0.9,
+          "created_at_turn": 0
+        },
+        {
+          "id": "f38f38c5-1425-466f-8025-2c4fdd3f423b",
+          "content": "I hate X",
+          "confidence": 0.3,
+          "created_at_turn": 5
+        }
+      ],
+      "confidence_score": 0.9,
+      "notes": "Weakened newer belief due to 0.30 confidence gap",
+      "test_name": "clear_winner_contradiction",
+      "status": "pass"
+    },
+    {
+      "case_id": "911709db18843739",
+      "input_beliefs": [
+        {
+          "id": "6b11fed7-5ad5-4088-a2bf-1c6c23828316",
+          "content": "Old fact",
+          "confidence": 0.8,
+          "created_at_turn": 0
+        },
+        {
+          "id": "8bf02d1e-4aab-43c8-943f-1cb4e3e7cbb6",
+          "content": "New fact",
+          "confidence": 0.75,
+          "created_at_turn": 50
+        }
+      ],
+      "resolution_action": "weaken",
+      "resulting_beliefs": [
+        {
+          "id": "6b11fed7-5ad5-4088-a2bf-1c6c23828316",
+          "content": "Old fact",
+          "confidence": 0.5599999999999999,
+          "created_at_turn": 0
+        },
+        {
+          "id": "8bf02d1e-4aab-43c8-943f-1cb4e3e7cbb6",
+          "content": "New fact",
+          "confidence": 0.75,
+          "created_at_turn": 50
+        }
+      ],
+      "confidence_score": 0.655,
+      "notes": "Weakened older belief (age diff: 50 turns)",
+      "test_name": "age_difference",
+      "status": "pass"
+    },
+    {
+      "case_id": "c5215732677179f5",
+      "input_beliefs": [
+        {
+          "id": "5812b4aa-e56c-40a0-bc62-8445b220ad5a",
+          "content": "Test A",
+          "confidence": 0.85,
+          "created_at_turn": 0
+        },
+        {
+          "id": "48f5b0af-44e5-4417-96ca-2e37974a8c87",
+          "content": "Test B",
+          "confidence": 0.7,
+          "created_at_turn": 5
+        }
+      ],
+      "resolution_action": "weaken",
+      "resulting_beliefs": [
+        {
+          "id": "5812b4aa-e56c-40a0-bc62-8445b220ad5a",
+          "content": "Test A",
+          "confidence": 0.85,
+          "created_at_turn": 0
+        },
+        {
+          "id": "48f5b0af-44e5-4417-96ca-2e37974a8c87",
+          "content": "Test B",
+          "confidence": 0.35,
+          "created_at_turn": 5
+        }
+      ],
+      "confidence_score": 0.85,
+      "notes": "Weakened newer belief due to 0.15 confidence gap",
+      "test_name": "determinism",
+      "status": "pass"
+    },
+    {
+      "case_id": "9bfb3abef43cace8",
+      "input_beliefs": [
+        {
+          "id": "5424a106-ce9f-48b9-8ac6-afc34f5285c0",
+          "content": "The sky is blue",
+          "confidence": 0.8,
+          "created_at_turn": 0
+        },
+        {
+          "id": "8d970f95-60a1-4189-bef0-f585521dec7f",
+          "content": "The sky is gray",
+          "confidence": 0.8,
+          "created_at_turn": 5
+        }
+      ],
+      "resolution_action": "defer",
+      "resulting_beliefs": [
+        {
+          "id": "5424a106-ce9f-48b9-8ac6-afc34f5285c0",
+          "content": "The sky is blue",
+          "confidence": 0.8,
+          "created_at_turn": 0
+        },
+        {
+          "id": "8d970f95-60a1-4189-bef0-f585521dec7f",
+          "content": "The sky is gray",
+          "confidence": 0.8,
+          "created_at_turn": 5
+        }
+      ],
+      "confidence_score": 0.8,
+      "notes": "Deferred: beliefs have similar confidence and age, marking as conflicting",
+      "test_name": "generated_9bfb3abe",
+      "status": "generated"
+    },
+    {
+      "case_id": "6449e32f2a98404b",
+      "input_beliefs": [
+        {
+          "id": "75cff6cc-b8d0-4409-ae1f-8884937703d3",
+          "content": "I like coffee",
+          "confidence": 0.9,
+          "created_at_turn": 0
+        },
+        {
+          "id": "e95fbfa0-244d-4873-ba78-7b0c96656afa",
+          "content": "I hate coffee",
+          "confidence": 0.6,
+          "created_at_turn": 5
+        }
+      ],
+      "resolution_action": "weaken",
+      "resulting_beliefs": [
+        {
+          "id": "75cff6cc-b8d0-4409-ae1f-8884937703d3",
+          "content": "I like coffee",
+          "confidence": 0.9,
+          "created_at_turn": 0
+        },
+        {
+          "id": "e95fbfa0-244d-4873-ba78-7b0c96656afa",
+          "content": "I hate coffee",
+          "confidence": 0.3,
+          "created_at_turn": 5
+        }
+      ],
+      "confidence_score": 0.9,
+      "notes": "Weakened newer belief due to 0.30 confidence gap",
+      "test_name": "generated_6449e32f",
+      "status": "generated"
+    },
+    {
+      "case_id": "af01888c53cdfc4d",
+      "input_beliefs": [
+        {
+          "id": "f2eb09a3-d4a6-4b02-a0af-ef8ced6cd53d",
+          "content": "I live in Seattle",
+          "confidence": 0.7,
+          "created_at_turn": 0
+        },
+        {
+          "id": "e3bc1c16-2fa5-4945-9872-69bb6d494826",
+          "content": "I live in Portland",
+          "confidence": 0.85,
+          "created_at_turn": 50
+        }
+      ],
+      "resolution_action": "weaken",
+      "resulting_beliefs": [
+        {
+          "id": "f2eb09a3-d4a6-4b02-a0af-ef8ced6cd53d",
+          "content": "I live in Seattle",
+          "confidence": 0.35,
+          "created_at_turn": 0
+        },
+        {
+          "id": "e3bc1c16-2fa5-4945-9872-69bb6d494826",
+          "content": "I live in Portland",
+          "confidence": 0.85,
+          "created_at_turn": 50
+        }
+      ],
+      "confidence_score": 0.85,
+      "notes": "Weakened older belief due to 0.15 confidence gap",
+      "test_name": "generated_af01888c",
+      "status": "generated"
+    },
+    {
+      "case_id": "b71d03e90ca29416",
+      "input_beliefs": [
+        {
+          "id": "59fe07cb-db08-4e23-9e29-98ac49bc6a2d",
+          "content": "I am a programmer",
+          "confidence": 0.8,
+          "created_at_turn": 0
+        },
+        {
+          "id": "7da1f819-51e2-446c-a920-d152a05d2cf0",
+          "content": "I am a designer",
+          "confidence": 0.75,
+          "created_at_turn": 100
+        }
+      ],
+      "resolution_action": "weaken",
+      "resulting_beliefs": [
+        {
+          "id": "59fe07cb-db08-4e23-9e29-98ac49bc6a2d",
+          "content": "I am a programmer",
+          "confidence": 0.5599999999999999,
+          "created_at_turn": 0
+        },
+        {
+          "id": "7da1f819-51e2-446c-a920-d152a05d2cf0",
+          "content": "I am a designer",
+          "confidence": 0.75,
+          "created_at_turn": 100
+        }
+      ],
+      "confidence_score": 0.655,
+      "notes": "Weakened older belief (age diff: 100 turns)",
+      "test_name": "generated_b71d03e9",
+      "status": "generated"
+    },
+    {
+      "case_id": "c80e257d3f831a1c",
+      "input_beliefs": [
+        {
+          "id": "b4526e14-6901-4c8e-93f3-2ec26f06fca1",
+          "content": "It is warm outside",
+          "confidence": 0.8,
+          "created_at_turn": 95
+        },
+        {
+          "id": "1ae9ba18-1e13-4329-9fb8-3a415b897f52",
+          "content": "It is cold outside",
+          "confidence": 0.8,
+          "created_at_turn": 100
+        }
+      ],
+      "resolution_action": "defer",
+      "resulting_beliefs": [
+        {
+          "id": "b4526e14-6901-4c8e-93f3-2ec26f06fca1",
+          "content": "It is warm outside",
+          "confidence": 0.8,
+          "created_at_turn": 95
+        },
+        {
+          "id": "1ae9ba18-1e13-4329-9fb8-3a415b897f52",
+          "content": "It is cold outside",
+          "confidence": 0.8,
+          "created_at_turn": 100
+        }
+      ],
+      "confidence_score": 0.8,
+      "notes": "Deferred: beliefs have similar confidence and age, marking as conflicting",
+      "test_name": "generated_c80e257d",
+      "status": "generated"
+    }
+  ]
+}
